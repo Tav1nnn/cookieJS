@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    function criarCookie(/*nome, valor, expira*/){
+        var dtExpira = "expires="+"Tue, 01 Jan 2115 12:00:00 UTC";
+        document.cookie = "BoasVindas" + "=" + "irParaPagInicial" + "; " + dtExpira;
+    }
+
+    function lerCookie(nome){
+        var vnome = "BoasVindas" + "=";
+        var ca = document.cookie.split(';');
+
+        for(var i=0; i<ca.length; i++){
+            var c = ca[i];
+
+            while (c.charAt(0)==' '){
+                c = c.substring(1);
+            }
+            
+            if(c.indexOf(vnome)==0){
+                return c.substring(vnome.length,c.length);
+            }
+            return "";
+        }
+    }
+
+        function verificarCookie(){
+            var nomeCookie = lerCookie("irParaPagInicial");
+
+            if(nomeCookie!=""){
+                location.href = "http://127.0.0.1:5500/pagPrincipal.html";
+            }/*else{
+                location.href = "http://127.0.0.1:5500/index.html";
+                nomeCookie = "irParaPagInicial";
+                criarCookie("BoasVindas", nomeCookie, "Tue, 01 Jan 2115 12:00:00 UTC");
+            }*/
+        }
+    
+   </script>
+
+<body onload="verificarCookie()">
+
+  
+
+    <h1>Criando Cookie</h1>
+
+    <a href="" onclick="criarCookie()">Criar cookie</a>
+</body>
+
+</html>
